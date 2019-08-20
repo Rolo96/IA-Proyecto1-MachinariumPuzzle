@@ -2,6 +2,10 @@
 #       Tecnologico de Costa Rica        #
 #        Inteligencia Artificial         #
 #               Proyecto 1               #
+#               Raul Arias               #
+#            Victor CHavarría            #
+#            Gabriel Espinoza            #
+#            Esteban Sanabria            #               
 ##########################################
 
 #-----------------Imports ----------------
@@ -197,18 +201,23 @@ def solvePuzzle():
         #Win
         else:
             Moves.append(ActualState[7:10])
-            print("WIN")
             break;
         step = step + 1
         
 #---------------GUI Functions-------------------
 
 def nextStep():
+    """
+    Show next step in graphical interface
+    """
     global actualStep
 
+    #Get values
     movement = Moves[actualStep+1]
     move = movement[1]
     position = movement[2]
+
+    #Updating arrows
     if move == MOVE_DOWN:
         canvas.move(Arrows[position], 0, 50)
         Arrows[position+1] = Arrows[position]
@@ -225,7 +234,8 @@ def nextStep():
         canvas.move(Arrows[position], 0, -100)
         Arrows[position-2] = Arrows[position]
         Arrows[position] = None
-        
+
+    #Updating step
     actualStep = actualStep + 1
     stepLabel.configure(text="Step: " + str(actualStep) + " of: " + totalStepStr)
     if actualStep >= totalStep:
@@ -234,11 +244,17 @@ def nextStep():
         previousButton.configure(state=tk.NORMAL)
 
 def previousStep():
+    """
+    Show previous step in graphical interface
+    """
     global actualStep
 
+    #Get values
     movement = Moves[actualStep]
     move = movement[1]
     position = movement[2]
+
+    #Updating arrows
     if move == MOVE_DOWN:
         canvas.move(Arrows[position+1], 0, -50)
         Arrows[position] = Arrows[position+1]
@@ -255,7 +271,8 @@ def previousStep():
         canvas.move(Arrows[position-2], 0, 100)
         Arrows[position] = Arrows[position-2]
         Arrows[position-2] = None
-        
+
+    #Updating step
     actualStep = actualStep - 1
     stepLabel.configure(text="Step: " + str(actualStep) + " of: " + totalStepStr)
     if actualStep <= 0:
@@ -270,6 +287,7 @@ totalStep = len(Moves)-1
 totalStepStr = str(totalStep)
 
 root = tk.Tk()
+root.title("IA - Project #1")
 
 #Creating the canvas
 canvas = tk.Canvas(root, width=700, height=700)
@@ -277,13 +295,15 @@ canvas.pack()
 
 #Creating the buttons and labels
 Title = tk.Label(canvas, text = "Arrows puzzle")
-Title.place(x=320, y=75)
+Title.place(x=220, y=75)
+Title.config(font=("Courier", 25))
 stepLabel = tk.Label(canvas, text = "Step: " + str(actualStep) + " of: " + totalStepStr)
 stepLabel.place(x=500, y=600)
-previousButton = tk.Button(canvas, text="Previous Step", command=previousStep, fg="red" )
+stepLabel.config(font=("Courier", 15))
+previousButton = tk.Button(canvas, text="Previous Step", command=previousStep, fg="black", bg="white" )
 previousButton.place(x=200, y=650)
 previousButton.configure(state=tk.DISABLED)
-nextButton = tk.Button(canvas, text="Next Step", command=nextStep, fg="red" )
+nextButton = tk.Button(canvas, text="Next Step", command=nextStep, fg="black", bg="white" )
 nextButton.place(x=400, y=650)
 
 #Loading images
@@ -300,6 +320,7 @@ up_arrow_1 = canvas.create_image(360, 400, image=up_arrow_image)
 up_arrow_2 = canvas.create_image(360, 450, image=up_arrow_image)
 up_arrow_3 = canvas.create_image(360, 500, image=up_arrow_image)
 
+#Saving arrows
 Arrows.append(down_arrow_1)
 Arrows.append(down_arrow_2)
 Arrows.append(down_arrow_3)
