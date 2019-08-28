@@ -219,19 +219,19 @@ def nextStep():
 
     #Updating arrows
     if move == MOVE_DOWN:
-        canvas.move(Arrows[position], 0, 50)
+        canvas.move(Arrows[position], 0, 55)
         Arrows[position+1] = Arrows[position]
         Arrows[position] = None
     elif move == JUMP_DOWN:
-        canvas.move(Arrows[position], 0, 100)
+        canvas.move(Arrows[position], 0, 105)
         Arrows[position+2] = Arrows[position]
         Arrows[position] = None
     elif move == MOVE_UP:
-        canvas.move(Arrows[position], 0, -50)
+        canvas.move(Arrows[position], 0, -55)
         Arrows[position-1] = Arrows[position]
         Arrows[position] = None
     elif move == JUMP_UP:
-        canvas.move(Arrows[position], 0, -100)
+        canvas.move(Arrows[position], 0, -105)
         Arrows[position-2] = Arrows[position]
         Arrows[position] = None
 
@@ -256,19 +256,19 @@ def previousStep():
 
     #Updating arrows
     if move == MOVE_DOWN:
-        canvas.move(Arrows[position+1], 0, -50)
+        canvas.move(Arrows[position+1], 0, -55)
         Arrows[position] = Arrows[position+1]
         Arrows[position+1] = None
     elif move == JUMP_DOWN:
-        canvas.move(Arrows[position+2], 0, -100)
+        canvas.move(Arrows[position+2], 0, -105)
         Arrows[position] = Arrows[position+2]
         Arrows[position+2] = None
     elif move == MOVE_UP:
-        canvas.move(Arrows[position-1], 0, 50)
+        canvas.move(Arrows[position-1], 0, 55)
         Arrows[position] = Arrows[position-1]
         Arrows[position-1] = None
     elif move == JUMP_UP:
-        canvas.move(Arrows[position-2], 0, 100)
+        canvas.move(Arrows[position-2], 0, 105)
         Arrows[position] = Arrows[position-2]
         Arrows[position-2] = None
 
